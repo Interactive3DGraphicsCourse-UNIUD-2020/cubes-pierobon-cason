@@ -7,3 +7,7 @@
 ## 25/10/2021
 - Creazione delle verie texture.
 - Ricerca e sviluppo codice per assegnare le texture ai vari cubi.
+## 26/10/2021
+- Studio per applicare le texture nei blocchi, in base all'altezza.
+## 27/10/2021
+- Applicazione delle texture nei blocchi, in base all'altezza. 
