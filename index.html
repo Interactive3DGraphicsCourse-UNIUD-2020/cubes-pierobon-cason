@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="css/stile.css" rel="stylesheet" type="text/css">
+	<title>Progetto 1 Cason Pierobon</title>
+	<meta charset="utf-8">
+	<script src="lib/three.min.js"></script>
+	<script src="lib/stats.min.js"></script>
+	<script src="lib/Coordinates.js"></script>
+	<script src="lib/OrbitControls.js"></script>
+	<script src="lib/BufferGeometryUtils.js"></script>
+	<script src="js/changeSeason.js"></script>
+	<script src="js/material.js"></script>
+	<script src="js/snow.js"></script>
+	<script src="js/sun.js"></script>
+</head>
+
+<body>
+	<div id="select">
+		<label>Seleziona la stagione:</label>
+		<button id="summer">Estate</button>
+		<button id="winter">Inverno</button>
+	</div>
+	<script>
+		var scene, camera, renderer, controls, stats;
+		var summer = false;
+		var winter = false;
+		var snow = false;
+		var snowing = false;
+		var sun = true;
+		var sfera;
+		var pivot;
+		var hemiLight, dirLight;
+		var meshSfera;
+
+		function Start() {
+			scene = new THREE.Scene();
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+			renderer = new THREE.WebGLRenderer({
+				antialias: true,
+				toneMapping: THREE.ACESFilmicToneMapping,
+				//porta una gamma correction 
+				encoding: THREE.GammaEncoding
+			});
+			//impostazione grandezza canvas
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			//impostazione a colore background in grigio scuro
+			renderer.setClearColor(0x404040);
+			//creazione canvas
+			document.body.appendChild(renderer.domElement);
+			//posizione camera a x = 25, y = 65, z = -30
+			camera.position.set(25, 65, -30);
+			camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+			//creazione sole
+			startSun();
+
+			//aggiunta luci
+			hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
+			hemiLight.color.setHSL(0.6, 1, 0.6);
+			hemiLight.groundColor.setHSL(0.095, 1, 0.75);
+			hemiLight.position.set(0, 500, 0);
+			scene.add(hemiLight);
+
+			//aggiunta statistiche
+			stats = new Stats();
+			document.body.appendChild(stats.domElement);
+			//aggiunta movimento orbitale seguito dal mouse per spostare la camera
+			controls = new THREE.OrbitControls(camera);
+			controls.addEventListener('change', Render, { passive: false });
+			//inizializzazione terreno
+			startGround();
+		}
+
+		function Update() {
+			requestAnimationFrame(Update);
+			controls.update();
+			stats.update();
+			ChangeSeason();
+			if (snow == true) {
+				animationSnow();
+			}
+			if (sun == true) {
+				animationSun();
+			}
+			Render();
+		}
+
+		function Render() {
+			renderer.render(scene, camera);
+		}
+
+		Start();
+		Update();
+
+		document.getElementById("summer").onclick = function () { summer = true; snow = false; sun = true; };
+		document.getElementById("winter").onclick = function () { winter = true; snow = true; sun = false; };
+	</script>
+</body>
+
+</html>
