@@ -12,7 +12,6 @@
 ## 27/10/2021
 - Applicazione delle texture nei blocchi, in base all'altezza. 
 ## 28/10/2021
-- Creazione HeighMap dal sito pixilart.com.
 - Modifica codice per traslare bene l'altezza dei singoli blocchi.
 - Inizio parte HTML per aggiungere un contenuto iterativo.
 ## 30/10/2021
