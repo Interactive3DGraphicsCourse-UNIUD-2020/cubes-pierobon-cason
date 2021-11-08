@@ -1,7 +1,7 @@
 # Progetto 1 - Modellare e Renderizzare con i Cubi
 
 ## Risultato Finale
-
+![preview](https://user-images.githubusercontent.com/50354928/140802269-cecd42ce-570e-421f-9e0b-4011aa5b3694.gif)
 
 
 ## Introduzione
@@ -36,5 +36,3 @@ Il risultato è un oggetto che emana luce di tipo PointLight.
 Per farlo invece ruotare, si è aggiunta alla sfera un pivot, con coordinate (0,0,0) e quindi al centro della scena. 
 Il sole ruota intorno all'asse x, con come perno il pivot.
 Infine si è tolta la rotazione se la stagione è quella invernale. 
-## PREVIEW
-![preview](https://user-images.githubusercontent.com/50354928/140802269-cecd42ce-570e-421f-9e0b-4011aa5b3694.gif)
